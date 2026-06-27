@@ -69,7 +69,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-4 pt-20 pb-16 sm:px-6 lg:px-8"
+      className="relative flex min-h-0 sm:min-h-screen flex-col justify-center overflow-hidden px-4 pt-20 pb-8 sm:pb-16 sm:px-6 lg:px-8"
       aria-labelledby="hero-heading"
     >
       {/* Background ambient accents — drastically reduced for the cleaner
@@ -114,7 +114,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-              className="font-display font-normal text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-gradient"
+              className="font-display font-normal text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-gradient"
             >
               <HeroTitle title={portfolioData.title} />
             </motion.h1>
@@ -188,8 +188,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-              className="mt-12 flex items-center gap-5"
+              className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5"
             >
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
@@ -211,13 +212,16 @@ export function Hero() {
                   <social.icon className="size-4" aria-hidden="true" />
                 </motion.a>
               ))}
-              <Separator orientation="vertical" className="h-4 bg-border" />
-              <a
-                href={`mailto:${siteConfig.links.email?.replace("mailto:", "") || "aniketshankhwar1531@gmail.com"}`}
-                className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
-              >
-                aniketshankhwar1531@gmail.com
-              </a>
+              </div>
+              <div className="flex items-center gap-5">
+                <Separator orientation="vertical" className="h-4 bg-border hidden sm:block" />
+                <a
+                  href={`mailto:${siteConfig.links.email?.replace("mailto:", "") || "aniketshankhwar1531@gmail.com"}`}
+                  className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+                >
+                  aniketshankhwar1531@gmail.com
+                </a>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -238,14 +242,14 @@ export function Hero() {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="relative w-full max-w-[420px] aspect-square rounded-2xl border border-border/80 bg-card/30 backdrop-blur-xl p-6 shadow-2xl overflow-hidden gradient-border">
+            <div className="relative w-full max-w-[320px] sm:max-w-[420px] sm:aspect-square rounded-2xl border border-border/80 bg-card/30 backdrop-blur-xl p-4 sm:p-6 shadow-2xl overflow-hidden gradient-border">
               {/* Inner glowing elements — kept to blur-lg/blur-xl to avoid
                   stacking three expensive large-radius blurs inside backdrop-blur */}
               <div className="absolute -top-12 -left-12 size-32 rounded-full bg-primary/20 blur-lg pointer-events-none" />
               <div className="absolute -bottom-16 -right-16 size-40 bg-primary/20 blur-xl pointer-events-none" />
               
               {/* Window controls */}
-              <div className="flex items-center justify-between border-b border-border/40 pb-4 mb-4">
+              <div className="flex items-center justify-between border-b border-border/40 pb-3 sm:pb-4 mb-3 sm:mb-4">
                 <div className="flex items-center gap-1.5">
                   <div className="size-3 rounded-full bg-red-500/80" />
                   <div className="size-3 rounded-full bg-yellow-500/80" />
@@ -258,7 +262,7 @@ export function Hero() {
               </div>
 
               {/* Mock code text — syntax colors use copper accent family */}
-              <pre className="font-mono text-xs sm:text-[13px] text-muted-foreground/90 space-y-2.5 overflow-x-auto leading-relaxed">
+              <pre className="font-mono text-xs sm:text-[13px] text-muted-foreground/90 space-y-1.5 sm:space-y-2.5 overflow-x-auto leading-relaxed">
                 <code>
                   <span className="text-primary font-semibold">const</span> developer = &#123;<br />
                   &nbsp;&nbsp;name: <span className="text-primary/80">"Aniket Shankhwar"</span>,<br />

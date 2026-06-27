@@ -72,7 +72,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-28 sm:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative py-16 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
       aria-labelledby="contact-heading"
     >
       {/* Background soft blob for premium layout accent */}
@@ -84,9 +84,9 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center max-w-2xl mx-auto mb-20"
+          className="text-center max-w-2xl mx-auto mb-12 sm:mb-20"
         >
-          <h2 id="contact-heading" className="font-display font-normal text-5xl sm:text-6xl tracking-tight text-gradient">
+          <h2 id="contact-heading" className="font-display font-normal text-4xl sm:text-5xl lg:text-6xl tracking-tight text-gradient">
             Get In Touch
          </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
@@ -120,10 +120,10 @@ export function Contact() {
                     action={
                       <a
                         href={`mailto:${RECIPIENT_EMAIL}`}
-                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
+                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
                       >
                         {RECIPIENT_EMAIL}
-                        <Send className="size-3" aria-hidden="true" />
+                        <Send className="size-3 shrink-0" aria-hidden="true" />
                      </a>
                     }
                   />
@@ -136,10 +136,10 @@ export function Contact() {
                         href={siteConfig.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
+                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
                       >
                         github.com/AniketShankhwar
-                        <Send className="size-3" aria-hidden="true" />
+                        <Send className="size-3 shrink-0" aria-hidden="true" />
                      </a>
                     }
                   />
@@ -152,10 +152,10 @@ export function Contact() {
                         href={siteConfig.links.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
+                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 py-1 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:rounded-sm"
                       >
                         linkedin.com/in/aniket-shankhwar
-                        <Send className="size-3" aria-hidden="true" />
+                        <Send className="size-3 shrink-0" aria-hidden="true" />
                      </a>
                     }
                   />
@@ -275,7 +275,7 @@ export function Contact() {
 
 function ContactItem({ icon: Icon, title, description, action }) {
   return (
-    <div className="flex flex-col gap-2 p-4 rounded-xl border border-border/80 bg-background/50 backdrop-blur-md">
+    <div className="flex flex-col gap-2 p-3 sm:p-4 rounded-xl border border-border/80 bg-background/50 backdrop-blur-md">
       <div className="flex items-center gap-3">
         <div className="flex-shrink-0 size-9 rounded-lg bg-muted flex items-center justify-center border border-border/50" aria-hidden="true">
           <Icon className="size-4 text-primary" />
@@ -283,9 +283,9 @@ function ContactItem({ icon: Icon, title, description, action }) {
         <h4 className="font-bold text-sm text-foreground tracking-tight">{title}</h4>
      </div>
       {description && (
-        <p className="text-xs text-muted-foreground leading-snug pl-12">{description}</p>
+        <p className="text-xs text-muted-foreground leading-snug pl-0 sm:pl-12">{description}</p>
       )}
-      <div className="pl-12 flex items-center">{action}</div>
+      <div className="pl-0 sm:pl-12 flex items-center flex-wrap break-all [&_a]:break-all">{action}</div>
    </div>
   )
 }
