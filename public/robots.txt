@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aniket-shankhwar.dev/sitemap.xml
