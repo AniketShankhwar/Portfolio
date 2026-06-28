@@ -18,8 +18,8 @@ export const siteConfig = {
 export const portfolioData = {
   name: "Aniket Shankhwar",
   title: "Full Stack Developer",
-  bio: "I'm a full stack developer with hands-on experience shipping real-world web applications through internships and independent projects, currently completing my B.Tech in Computer Science. I work comfortably across the stack: React and Next.js on the frontend, Node.js and Express on the backend, PostgreSQL and Prisma for data. I care about clean APIs, responsive UI, and shipping things that actually run in production.",
-  tagline: "Building full-stack web apps from database to deployed URL.",
+  bio: "I'm a Full Stack Developer with hands-on experience building and deploying production-ready web applications through internships and independent projects. I recently earned my Bachelor's degree in Computer Science and enjoy developing scalable, user-focused solutions from front to back. My tech stack includes React, Next.js, Node.js, Express, PostgreSQL, and Prisma. I'm passionate about writing clean, maintainable code, designing robust APIs, creating responsive user interfaces, and delivering applications that solve real-world problems.",
+  tagline: "Building scalable, production-ready web applications from database design to deployment.",
   skills: {
     languages: [
       { name: "JavaScript (ES6+)", icon: "javascript", proficiency: 85 },

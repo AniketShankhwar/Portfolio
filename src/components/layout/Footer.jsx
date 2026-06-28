@@ -21,7 +21,7 @@ export function Footer() {
               <img src="/logo_.png" alt="Aniket Shankhwar logo" className="h-9 w-auto" />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              Full Stack Developer, building full-stack web apps from database to deployed URL.
+              Full Stack Developer building scalable, production-ready web applications from database design to deployment.
             </p>
             <div className="mt-6 flex gap-4">
               <a

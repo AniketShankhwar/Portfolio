@@ -81,11 +81,12 @@ export function About() {
               <h3 className="text-xl font-bold mb-5 text-foreground tracking-tight">What I'm Focused On</h3>
               <ul className="space-y-3.5 text-muted-foreground">
                 {[
-                  "Building accessible, performant web applications",
-                  "Shipping full-stack projects from database to deployed URL",
-                  "Integrating AI APIs (OpenAI, Gemini) into real products",
-                  "Optimizing PostgreSQL schemas and REST API performance",
-                  "Exploring system design and scalable architectures",
+                  "Building production-ready, scalable full-stack applications",
+                  "Creating intuitive, performant, and accessible user experiences",
+                  "Designing clean backend architectures, REST APIs, and optimized database schemas",
+                  "Integrating AI and LLM-powered features into real-world applications",
+                  "Writing maintainable, well-tested code with modern development workflows",
+                  "Learning system design, cloud infrastructure, and scalable software architecture",
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -106,7 +107,7 @@ export function About() {
             <div className="rounded-2xl bg-card border border-border p-8 gradient-border glow-hover">
               <h3 className="text-xl font-bold mb-5 text-foreground tracking-tight">Currently Learning</h3>
               <div className="flex flex-wrap gap-2.5">
-                {["TypeScript", "DSA", "Ai Tools", "n8n", "Docker", "System Design", "Testing"].map((tech, index) => (
+                {["TypeScript", "Data Structures & Algorithms (DSA)", "Docker & Containerization", "AI-Powered Development & LLM Integration", "n8n Workflow Automation", "Testing (Unit, Integration & End-to-End)"].map((tech, index) => (
                   <motion.span
                     key={tech}
                     initial={{ opacity: 0, scale: 0.8 }}

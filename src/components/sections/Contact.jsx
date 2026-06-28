@@ -106,10 +106,10 @@ export function Contact() {
             <Card className="w-full bg-card border border-border gradient-border glow-hover flex flex-col p-6 h-full">
               <div className="flex-1 flex flex-col">
                 <CardHeader className="p-0 mb-6">
-                  <CardTitle className="text-2xl font-bold tracking-tight text-foreground">Let's work together</CardTitle>
+                  <CardTitle className="text-2xl font-bold tracking-tight text-foreground">Let's Connect</CardTitle>
                   <CardDescription className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                    I'm always open to discussing new projects, creative design systems, or engineering opportunities.
-                 </CardDescription>
+                    I'm always interested in collaborating on meaningful projects, solving challenging engineering problems, and building products users love.
+                </CardDescription>
                </CardHeader>
 
                 <CardContent className="p-0 space-y-5">
@@ -163,20 +163,20 @@ export function Contact() {
              </div>
 
               <div className="pt-6 border-t border-border/60 mt-8 space-y-3">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Availability Status</h4>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Availability</h4>
                 <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-65"></span>
                     <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
                  </span>
-                  <span>Available for freelance contracts</span>
+                  <span>Available for freelance projects</span>
                </div>
                 <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-65"></span>
                     <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
                  </span>
-                  <span>Seeking full-time React engineering roles</span>
+                  <span>Open to full-time Full Stack or React Developer roles</span>
                </div>
              </div>
            </Card>
