@@ -19,20 +19,26 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState("dark")
+  // Lazy init reads localStorage synchronously on first render — this is a
+  // client-only SPA so localStorage always exists, and it matches the theme
+  // class the inline script in index.html already applied, avoiding both a
+  // setState-in-effect cascade and a theme-toggle icon flash.
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem("theme") || "dark"
+    } catch {
+      return "dark"
+    }
+  })
 
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
-    setMounted(true)
-    const storedTheme = localStorage.getItem("theme") || "dark"
-    setTheme(storedTheme)
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
+    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -65,7 +71,7 @@ export function Navbar() {
   }
 
   useEffect(() => {
-    if (mounted && location.pathname === "/" && location.state?.scrollTo) {
+    if (location.pathname === "/" && location.state?.scrollTo) {
       const href = location.state.scrollTo
       navigate(location.pathname, { replace: true, state: {} })
 
@@ -76,13 +82,7 @@ export function Navbar() {
         }
       }, 100)
     }
-  }, [location, mounted, navigate])
-
-  if (!mounted) {
-    return (
-      <nav className="fixed top-0 left-0 right-0 z-50 h-16" aria-label="Main navigation" />
-    )
-  }
+  }, [location, navigate])
 
   const emailAddress = siteConfig.links.email?.replace("mailto:", "") || "aniketshankhwar1531@gmail.com"
 

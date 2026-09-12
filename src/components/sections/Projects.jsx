@@ -17,6 +17,7 @@ const gradientProfiles = {
   6: "radial-gradient(circle at 70% 30%, oklch(0.60 0.14 42 / 20%), transparent 70%), radial-gradient(circle at 30% 70%, oklch(0.24 0.04 0 / 36%), transparent 75%)",
   7: "radial-gradient(circle at 50% 20%, oklch(0.58 0.13 36 / 18%), transparent 65%), radial-gradient(circle at 50% 80%, oklch(0.26 0.05 0 / 34%), transparent 70%)",
   8: "radial-gradient(circle at 20% 50%, oklch(0.62 0.14 40 / 20%), transparent 70%), radial-gradient(circle at 80% 50%, oklch(0.22 0.04 0 / 38%), transparent 70%)",
+  9: "radial-gradient(circle at 15% 15%, oklch(0.60 0.14 42 / 22%), transparent 70%), radial-gradient(circle at 85% 85%, oklch(0.24 0.04 0 / 40%), transparent 70%)",
 }
 
 export function Projects() {

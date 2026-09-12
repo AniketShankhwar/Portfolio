@@ -97,6 +97,19 @@ export const portfolioData = {
       category: "Full-Stack",
     },
     {
+      id: 9,
+      title: "Project Management Tool",
+      tagline: "Kanban boards, client directory, leave requests, and shared calendar for small teams",
+      description:
+        "A project management app for small teams, built with Next.js. Projects carry kanban task boards, and around them sit a client directory, a team roster with an admin approval flow, leave requests, a shared calendar, and in-app notifications. Built on the App Router with React Server Components and server actions, zod-validated inputs, and Clerk authentication with user lifecycle webhooks.",
+      techStack: ["Next.js 16", "React 19", "Clerk", "Prisma 7", "PostgreSQL", "Tailwind CSS 4", "dnd-kit", "Recharts", "Framer Motion", "Zod"],
+      image: null,
+      githubUrl: "https://github.com/AniketShankhwar/project-management-tool-public",
+      liveUrl: "https://project-management-tool-eight-sooty.vercel.app/",
+      featured: true,
+      category: "Full-Stack",
+    },
+    {
       id: 4,
       title: "BigQuery Release Console",
       tagline: "BigQuery release-notes dashboard with a built-in tweet composer",

@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
-import { ArrowRight, Mail, Code, Terminal, Download } from "lucide-react"
+import { ArrowRight, Code, Terminal, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SparkMark } from "@/components/ui/brand-marks"
 import { portfolioData, siteConfig } from "@/data/portfolio"
@@ -15,11 +15,9 @@ export function Hero() {
   const { scrollY } = useScroll()
   const yBlob1 = useTransform(scrollY, [0, 1000], [0, -120])
   const yBlob2 = useTransform(scrollY, [0, 1000], [0, 100])
-  const yOrb = useTransform(scrollY, [0, 1000], [0, -60])
-  
+
   const blob1Y = shouldReduceMotion ? 0 : yBlob1
   const blob2Y = shouldReduceMotion ? 0 : yBlob2
-  const orbY = shouldReduceMotion ? 0 : yOrb
 
   // Cursor-Aware Tilt Controls for Mockup Visual Card
   // Normalized -1..1 tilt, then mapped to a clamped rotation magnitude.
@@ -172,7 +170,7 @@ export function Hero() {
                   aria-label="Download CV"
                 >
                   <a
-                    href="https://drive.google.com/file/d/14a3SwBjF9tGEjPWN-Khe5wSa9CHbkAAB/view"
+                    href="https://drive.google.com/file/d/1W7PC2XKHEMHk6rT_QKwzzzoQW9UUc3mw/view"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

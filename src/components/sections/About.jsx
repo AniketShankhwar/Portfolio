@@ -3,6 +3,18 @@ import { portfolioData } from "@/data/portfolio"
 import { BlobTwo } from "@/components/ui/abstract-shapes"
 
 export function About() {
+  // Stats stay in sync with the data instead of drifting as projects and
+  // certifications are added.
+  const stats = [
+    { value: String(portfolioData.projects.length), label: "Projects Shipped" },
+    {
+      value: `${Object.values(portfolioData.skills).reduce((total, group) => total + group.length, 0)}+`,
+      label: "Technologies",
+    },
+    { value: String(portfolioData.experience.filter((e) => e.role.toLowerCase().includes("intern")).length || portfolioData.experience.length), label: "Internship" },
+    { value: String(portfolioData.certifications.length), label: "Certifications" },
+  ]
+
   return (
     <section
       id="about"
@@ -61,10 +73,9 @@ export function About() {
               transition={{ delay: 0.3 }}
               className="grid grid-cols-2 gap-6 pt-8 border-t border-border/80"
             >
-              <StatItem value="3" label="Projects Shipped" />
-              <StatItem value="20+" label="Technologies" />
-              <StatItem value="1" label="Internship" />
-              <StatItem value="4" label="Certifications" />
+              {stats.map((stat) => (
+                <StatItem key={stat.label} value={stat.value} label={stat.label} />
+              ))}
             </motion.div>
           </motion.div>
 

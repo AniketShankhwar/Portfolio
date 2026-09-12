@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Mail, Heart } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/data/portfolio"
@@ -8,6 +8,19 @@ import { BlobOne } from "@/components/ui/abstract-shapes"
 export function Footer() {
   const currentYear = new Date().getFullYear()
   const emailAddress = siteConfig.links.email?.replace("mailto:", "") || "aniketshankhwar1531@gmail.com"
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  // Same navigate-home-then-scroll pattern as the Navbar: hash anchors
+  // only resolve on "/", so from /projects we redirect first.
+  const handleSectionClick = (e, href) => {
+    e.preventDefault()
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: href } })
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
     <footer className="relative border-t border-border bg-muted/20 overflow-hidden" role="contentinfo">
@@ -103,6 +116,7 @@ export function Footer() {
               <li>
                 <a
                   href="#about"
+                  onClick={(e) => handleSectionClick(e, "#about")}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   About
@@ -111,6 +125,7 @@ export function Footer() {
               <li>
                 <a
                   href="#skills"
+                  onClick={(e) => handleSectionClick(e, "#skills")}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Skills
@@ -119,6 +134,7 @@ export function Footer() {
               <li>
                 <a
                   href="#projects"
+                  onClick={(e) => handleSectionClick(e, "#projects")}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Projects
@@ -127,6 +143,7 @@ export function Footer() {
               <li>
                 <a
                   href="#contact"
+                  onClick={(e) => handleSectionClick(e, "#contact")}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Contact
@@ -165,20 +182,6 @@ export function Footer() {
             <Heart className="text-primary size-3.5 fill-primary/20 animate-pulse" aria-hidden="true" />
             React, Tailwind, & Framer Motion
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link
-              to="/privacy"
-              className="hover:text-foreground transition-colors"
-            >
-              Privacy
-            </Link>
-            <Link
-              to="/terms"
-              className="hover:text-foreground transition-colors"
-            >
-              Terms
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

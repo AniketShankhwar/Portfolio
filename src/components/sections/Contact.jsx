@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, Send } from "lucide-react"
 import { siteConfig } from "@/data/portfolio"
-import { GithubIcon, LinkedinIcon, LeetcodeIcon, GeeksforgeeksIcon, CodeforcesIcon } from "@/components/ui"
+import { GithubIcon, LinkedinIcon } from "@/components/ui"
 import { BlobOne } from "@/components/ui/abstract-shapes"
 
 const RECIPIENT_EMAIL =
