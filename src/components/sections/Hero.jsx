@@ -1,68 +1,90 @@
-import { useRef } from "react"
-import { motion, useScroll, useTransform, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
-import { ArrowRight, Code, Terminal, Download } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { SparkMark } from "@/components/ui/brand-marks"
-import { portfolioData, siteConfig } from "@/data/portfolio"
-import { cn } from "@/lib/utils"
-import { GithubIcon, LinkedinIcon, LeetcodeIcon, GeeksforgeeksIcon, CodeforcesIcon, Separator } from "@/components/ui"
-import { BlobOne, BlobTwo } from "@/components/ui/abstract-shapes"
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
+import { ArrowRight, Code, Terminal, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SparkMark } from "@/components/ui/brand-marks";
+import { portfolioData, siteConfig } from "@/data/portfolio";
+import { cn } from "@/lib/utils";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  LeetcodeIcon,
+  GeeksforgeeksIcon,
+  CodeforcesIcon,
+  Separator,
+} from "@/components/ui";
+import { BlobOne, BlobTwo } from "@/components/ui/abstract-shapes";
 
 export function Hero() {
-  const shouldReduceMotion = useReducedMotion()
-  
-  // Parallax Scroll-Linked Depth Backgrounds
-  const { scrollY } = useScroll()
-  const yBlob1 = useTransform(scrollY, [0, 1000], [0, -120])
-  const yBlob2 = useTransform(scrollY, [0, 1000], [0, 100])
+  const shouldReduceMotion = useReducedMotion();
 
-  const blob1Y = shouldReduceMotion ? 0 : yBlob1
-  const blob2Y = shouldReduceMotion ? 0 : yBlob2
+  // Parallax Scroll-Linked Depth Backgrounds
+  const { scrollY } = useScroll();
+  const yBlob1 = useTransform(scrollY, [0, 1000], [0, -120]);
+  const yBlob2 = useTransform(scrollY, [0, 1000], [0, 100]);
+
+  const blob1Y = shouldReduceMotion ? 0 : yBlob1;
+  const blob2Y = shouldReduceMotion ? 0 : yBlob2;
 
   // Cursor-Aware Tilt Controls for Mockup Visual Card
   // Normalized -1..1 tilt, then mapped to a clamped rotation magnitude.
-  const tiltCardRef = useRef(null)
-  const rawXTilt = useMotionValue(0)
-  const rawYTilt = useMotionValue(0)
+  const tiltCardRef = useRef(null);
+  const rawXTilt = useMotionValue(0);
+  const rawYTilt = useMotionValue(0);
   // Spring adds gentle inertia — feels premium and avoids jittery tracking
-  const xTilt = useSpring(rawXTilt, { stiffness: 220, damping: 18, mass: 0.6 })
-  const yTilt = useSpring(rawYTilt, { stiffness: 220, damping: 18, mass: 0.6 })
+  const xTilt = useSpring(rawXTilt, { stiffness: 220, damping: 18, mass: 0.6 });
+  const yTilt = useSpring(rawYTilt, { stiffness: 220, damping: 18, mass: 0.6 });
 
   // Map normalized -1..1 tilt to a small clamped rotation (max ~6°)
   const rotateX = useTransform(
     yTilt,
     [-1, 1],
-    shouldReduceMotion ? [0, 0] : [6, -6]
-  )
+    shouldReduceMotion ? [0, 0] : [6, -6],
+  );
   const rotateY = useTransform(
     xTilt,
     [-1, 1],
-    shouldReduceMotion ? [0, 0] : [-6, 6]
-  )
+    shouldReduceMotion ? [0, 0] : [-6, 6],
+  );
 
   const handleMouseMove = (event) => {
-    if (shouldReduceMotion || !tiltCardRef.current) return
-    const rect = tiltCardRef.current.getBoundingClientRect()
+    if (shouldReduceMotion || !tiltCardRef.current) return;
+    const rect = tiltCardRef.current.getBoundingClientRect();
     // Normalize mouse position to -1..1 centered on the card
-    const normX = ((event.clientX - rect.left) / rect.width) * 2 - 1
-    const normY = ((event.clientY - rect.top) / rect.height) * 2 - 1
+    const normX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const normY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
     // Clamp to keep rotation predictable at edges
-    rawXTilt.set(Math.max(-1, Math.min(1, normX)))
-    rawYTilt.set(Math.max(-1, Math.min(1, normY)))
-  }
+    rawXTilt.set(Math.max(-1, Math.min(1, normX)));
+    rawYTilt.set(Math.max(-1, Math.min(1, normY)));
+  };
 
   const handleMouseLeave = () => {
-    rawXTilt.set(0)
-    rawYTilt.set(0)
-  }
+    rawXTilt.set(0);
+    rawYTilt.set(0);
+  };
 
   const socialLinks = [
     { icon: GithubIcon, href: siteConfig.links.github, label: "GitHub" },
     { icon: LinkedinIcon, href: siteConfig.links.linkedin, label: "LinkedIn" },
     { icon: LeetcodeIcon, href: siteConfig.links.leetcode, label: "LeetCode" },
-    { icon: GeeksforgeeksIcon, href: siteConfig.links.geeksforgeeks, label: "GeeksforGeeks" },
-    { icon: CodeforcesIcon, href: siteConfig.links.codeforces, label: "Codeforces" },
-  ]
+    {
+      icon: GeeksforgeeksIcon,
+      href: siteConfig.links.geeksforgeeks,
+      label: "GeeksforGeeks",
+    },
+    {
+      icon: CodeforcesIcon,
+      href: siteConfig.links.codeforces,
+      label: "Codeforces",
+    },
+  ];
 
   return (
     <section
@@ -104,7 +126,10 @@ export function Hero() {
             >
               <Code className="size-4 text-primary" aria-hidden="true" />
               <span>{portfolioData.name}</span>
-              <Terminal className="size-3.5 animate-pulse text-primary" aria-hidden="true" />
+              <Terminal
+                className="size-3.5 animate-pulse text-primary"
+                aria-hidden="true"
+              />
             </motion.div>
 
             <motion.h1
@@ -134,8 +159,16 @@ export function Hero() {
               className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
             >
               <motion.div
-                whileHover={shouldReduceMotion ? {} : { scale: 1.025, boxShadow: "0 0 25px var(--glow-color)" }}
-                whileTap={shouldReduceMotion ? {} : { scale: 0.97, boxShadow: "0 0 35px var(--glow-color)" }}
+                whileHover={
+                  shouldReduceMotion
+                    ? {}
+                    : { scale: 1.025, boxShadow: "0 0 25px var(--glow-color)" }
+                }
+                whileTap={
+                  shouldReduceMotion
+                    ? {}
+                    : { scale: 0.97, boxShadow: "0 0 35px var(--glow-color)" }
+                }
                 transition={{ type: "spring", stiffness: 450, damping: 15 }}
                 className="w-full sm:w-auto"
               >
@@ -145,16 +178,24 @@ export function Hero() {
                   className="group glow-hover shadow-[0_0_20px_var(--glow-color)] text-sm font-semibold gap-2 cursor-pointer w-full"
                   aria-label="View my projects"
                 >
-                  <a href="#projects" onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-                  }}>
+                  <a
+                    href="#projects"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .querySelector("#projects")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
                     View Projects
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </a>
                 </Button>
               </motion.div>
-              
+
               <motion.div
                 whileHover={shouldReduceMotion ? {} : { scale: 1.025 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.975 }}
@@ -170,11 +211,14 @@ export function Hero() {
                   aria-label="Download CV"
                 >
                   <a
-                    href="https://drive.google.com/file/d/1W7PC2XKHEMHk6rT_QKwzzzoQW9UUc3mw/view"
+                    href="https://drive.google.com/file/d/1tG12aF_PCWfFxjZmYBEWZLEFBhLnNK4m/view"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Download className="size-4 text-muted-foreground" aria-hidden="true" />
+                    <Download
+                      className="size-4 text-muted-foreground"
+                      aria-hidden="true"
+                    />
                     Download CV
                   </a>
                 </Button>
@@ -189,30 +233,45 @@ export function Hero() {
               className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5"
             >
               <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.08, borderColor: "oklch(from var(--primary) l c h / 40%)" }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.92 }}
-                  transition={{ delay: 0.6 + index * 0.08, duration: 0.3, ease: "easeOut" }}
-                  className={cn(
-                    "flex items-center justify-center size-10 rounded-full border border-border bg-card/60 text-muted-foreground",
-                    "hover:text-primary transition-colors duration-300",
-                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 rounded-full"
-                  )}
-                  aria-label={social.label}
-                >
-                  <social.icon className="size-4" aria-hidden="true" />
-                </motion.a>
-              ))}
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={
+                      shouldReduceMotion
+                        ? {}
+                        : {
+                            scale: 1.08,
+                            borderColor:
+                              "oklch(from var(--primary) l c h / 40%)",
+                          }
+                    }
+                    whileTap={shouldReduceMotion ? {} : { scale: 0.92 }}
+                    transition={{
+                      delay: 0.6 + index * 0.08,
+                      duration: 0.3,
+                      ease: "easeOut",
+                    }}
+                    className={cn(
+                      "flex items-center justify-center size-10 rounded-full border border-border bg-card/60 text-muted-foreground",
+                      "hover:text-primary transition-colors duration-300",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 rounded-full",
+                    )}
+                    aria-label={social.label}
+                  >
+                    <social.icon className="size-4" aria-hidden="true" />
+                  </motion.a>
+                ))}
               </div>
               <div className="flex items-center gap-5">
-                <Separator orientation="vertical" className="h-4 bg-border hidden sm:block" />
+                <Separator
+                  orientation="vertical"
+                  className="h-4 bg-border hidden sm:block"
+                />
                 <a
                   href={`mailto:${siteConfig.links.email?.replace("mailto:", "") || "aniketshankhwar1531@gmail.com"}`}
                   className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
@@ -235,7 +294,7 @@ export function Hero() {
               rotateY,
               transformStyle: "preserve-3d",
               perspective: 1000,
-              willChange: "transform"
+              willChange: "transform",
             }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -245,7 +304,7 @@ export function Hero() {
                   stacking three expensive large-radius blurs inside backdrop-blur */}
               <div className="absolute -top-12 -left-12 size-32 rounded-full bg-primary/20 blur-lg pointer-events-none" />
               <div className="absolute -bottom-16 -right-16 size-40 bg-primary/20 blur-xl pointer-events-none" />
-              
+
               {/* Window controls */}
               <div className="flex items-center justify-between border-b border-border/40 pb-3 sm:pb-4 mb-3 sm:mb-4">
                 <div className="flex items-center gap-1.5">
@@ -262,16 +321,37 @@ export function Hero() {
               {/* Mock code text — syntax colors use copper accent family */}
               <pre className="font-mono text-xs sm:text-[13px] text-muted-foreground/90 space-y-1.5 sm:space-y-2.5 overflow-x-auto leading-relaxed">
                 <code>
-                  <span className="text-primary font-semibold">const</span> developer = &#123;<br />
-                  &nbsp;&nbsp;name: <span className="text-primary/80">"Aniket Shankhwar"</span>,<br />
-                  &nbsp;&nbsp;role: <span className="text-primary/80">"Full Stack"</span>,<br />
-                  &nbsp;&nbsp;passion: <span className="text-primary/80">"Shipping Real-World Apps"</span>,<br />
+                  <span className="text-primary font-semibold">const</span>{" "}
+                  developer = &#123;
+                  <br />
+                  &nbsp;&nbsp;name:{" "}
+                  <span className="text-primary/80">"Aniket Shankhwar"</span>,
+                  <br />
+                  &nbsp;&nbsp;role:{" "}
+                  <span className="text-primary/80">"Full Stack"</span>,<br />
+                  &nbsp;&nbsp;passion:{" "}
+                  <span className="text-primary/80">
+                    "Shipping Real-World Apps"
+                  </span>
+                  ,<br />
                   &nbsp;&nbsp;stack: [<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-muted-foreground">"React"</span>, <span className="text-muted-foreground">"Next.js"</span>,<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-muted-foreground">"Tailwind"</span>, <span className="text-muted-foreground">"Node.js"</span><br />
-                  &nbsp;&nbsp;],<br />
-                  &nbsp;&nbsp;cleanAPIs: <span className="text-foreground/60">true</span>,<br />
-                  &nbsp;&nbsp;responsiveUI: <span className="text-foreground/60">true</span><br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="text-muted-foreground">"React"</span>,{" "}
+                  <span className="text-muted-foreground">"Next.js"</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="text-muted-foreground">
+                    "Tailwind"
+                  </span>,{" "}
+                  <span className="text-muted-foreground">"Node.js"</span>
+                  <br />
+                  &nbsp;&nbsp;],
+                  <br />
+                  &nbsp;&nbsp;cleanAPIs:{" "}
+                  <span className="text-foreground/60">true</span>,<br />
+                  &nbsp;&nbsp;responsiveUI:{" "}
+                  <span className="text-foreground/60">true</span>
+                  <br />
                   &#125;;
                 </code>
               </pre>
@@ -290,11 +370,11 @@ export function Hero() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function ScrollIndicator() {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
@@ -302,11 +382,15 @@ function ScrollIndicator() {
       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       className="flex flex-col items-center gap-1.5 text-muted-foreground cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
       onClick={() => {
-        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })
+        document
+          .querySelector("#about")
+          ?.scrollIntoView({ behavior: "smooth" });
       }}
       aria-hidden="true"
     >
-      <span className="text-[10px] uppercase tracking-widest font-semibold">Explore</span>
+      <span className="text-[10px] uppercase tracking-widest font-semibold">
+        Explore
+      </span>
       <motion.svg
         className="size-5 text-primary"
         viewBox="0 0 24 24"
@@ -319,17 +403,17 @@ function ScrollIndicator() {
         <path d="M12 5v14M19 12l-7 7-7-7" />
       </motion.svg>
     </motion.div>
-  )
+  );
 }
 
 /* Renders the headline with a SparkMark inline between words. Single-word
    titles get no mark; multi-word titles get a mark between the last two
    words with a small horizontal padding so the mark doesn't crowd text. */
 function HeroTitle({ title }) {
-  const words = title.split(" ")
-  if (words.length <= 1) return <>{title}</>
-  const head = words.slice(0, -1).join(" ")
-  const tail = words[words.length - 1]
+  const words = title.split(" ");
+  if (words.length <= 1) return <>{title}</>;
+  const head = words.slice(0, -1).join(" ");
+  const tail = words[words.length - 1];
   return (
     <>
       {head}{" "}
@@ -340,5 +424,5 @@ function HeroTitle({ title }) {
       />{" "}
       {tail}
     </>
-  )
+  );
 }
